@@ -1,34 +1,3 @@
-// WHEN the page loads:
-
-// The following elements are shown:
-// - high scores link
-// - timer at 0
-// - title
-// - welcome message
-// - start button
-
-// WHEN the user clicks start
-
-// - Hide/remove title, welcome message, and start button
-
-// - Display question: What keyword can be used to print the type of a value?
-
-// - display buttons with the following text below the question:
-//   - A true
-//   - B string
-//   - C typeof
-//   - D function
-
-// - Start countdown: display "Time: 120" to start.
-// - Update the time display each second counting down.
-
-// WHEN the user clicks a button
-// IF the user clicked "C typeof" button
-
-// IF the user clicked "A true", "B string", or "D function"
-
-// WHEN the time remaining reaches 0 or less
-
 var timerElement = document.querySelector(".seconds-left");
 var startButton = document.querySelector(".start-button");
 var quizBox = document.querySelector(".quiz-box");
@@ -62,22 +31,22 @@ function startQuiz() {
 }
 
 function saveAnswer(answer) {
-  var is_correct = answer.hasAttribute("correct");
+  var isCorrect = answer.hasAttribute("correct");
   var question = answer.parentElement;
-  var next_question = question.nextElementSibling;
+  var nextQuestion = question.nextElementSibling;
   
-  if(is_correct) {
-    next_question.querySelector(".answer-result").textContent = "Correct";
+  if(isCorrect) {
+    nextQuestion.querySelector(".answer-result").textContent = "Correct";
   } else {
     secondsLeft -= 10;
-    next_question.querySelector(".answer-result").textContent = "Wrong";
+    nextQuestion.querySelector(".answer-result").textContent = "Wrong";
   }
   // Hide current question
   question.classList.add("hidden-content");
   // Show next question
-  next_question.classList.remove("hidden-content");
+  nextQuestion.classList.remove("hidden-content");
   // Check for final score
-  if(next_question.getAttribute("id") == "form") {
+  if(nextQuestion.getAttribute("id") == "form") {
     clearInterval(timer);
   }
 }

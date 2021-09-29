@@ -11,14 +11,14 @@ function clearScores() {
 
 function fillHighscores() {
     var highscores = JSON.parse(localStorage.getItem("highscores"));
-    var list_item = "";
+    var listItem = "";
     console.log(highscores);
     for(i=0; i<highscores.length; i++) {
-        list_item += "<li>" + highscores[i] +"</li>";
+        listItem += "<li>" + highscores[i] +"</li>";
     }
-    console.log(list_item);
+    console.log(listItem);
     
-    highscoreList.innerHTML = list_item;
+    highscoreList.innerHTML = listItem;
 }
 
 fillHighscores();
