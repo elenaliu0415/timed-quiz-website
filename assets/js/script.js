@@ -29,33 +29,71 @@
 
 // WHEN the time remaining reaches 0 or less
 
-var timerElement = document.querySelector('.seconds-left');
-var startButton = document.querySelector('.start-button');
-
+var timerElement = document.querySelector(".seconds-left");
+var startButton = document.querySelector(".start-button");
+var quizBox = document.querySelector(".quiz-box");
+var header = document.querySelector("#header");
+var finalScore = document.querySelector("#final-score");
+var initials = document.querySelector("#initials");
 
 var timer;
 var secondsLeft;
+var finalScoreValue;
 
-
-startButton.addEventListener('click', startQuiz);
 
 function startTimer() {
-
   timer = setInterval(function () {
-    
     timerElement.textContent = secondsLeft;
 
-    if (secondsLeft > 0) {
-        secondsLeft--;
+    if (secondsLeft <= 0) {
+      clearInterval(timer);
     } else {
-        clearInterval(secondsLeft);
+      secondsLeft--;
     }
   }, 1000);
 }
 
 function startQuiz() {
-    secondsLeft = 120;
-    startTimer();
+  secondsLeft = 120;
+  startTimer();
+  header.classList.add("hidden-content");
+  quizBox.classList.remove("hidden-content");
+}
+
+function saveAnswer(answer) {
+  var is_correct = answer.hasAttribute("correct");
+  var question = answer.parentElement;
+  var next_question = question.nextElementSibling;
+  
+  if(is_correct) {
+    next_question.querySelector(".answer-result").textContent = "Correct";
+  } else {
+    secondsLeft -= 10;
+    next_question.querySelector(".answer-result").textContent = "Wrong";
+  }
+  // Hide current question
+  question.classList.add("hidden-content");
+  // Show next question
+  next_question.classList.remove("hidden-content");
+  // Set final score
+  finalScoreValue = secondsLeft;
+  finalScore.textContent = "Your Final Score is: " + secondsLeft;
+}
+
+function submitScore() {
+  var highscores;
+  var score = "";
+  if(localStorage.getItem("highscores") == null) {
+    localStorage.setItem("highscores", JSON.stringify([]));
   }
 
-startButton.addEventListener('click', startQuiz);
+  highscores = JSON.parse(localStorage.getItem("highscores"));
+  // highscore = highscores.length + 1;
+  score = initials.value + " - " + finalScoreValue;
+  highscores.push(score);
+  localStorage.setItem("highscores", JSON.stringify(highscores));
+  // redirect to highscores page
+  window.location.href = "highscore.html";
+}
+
+startButton.addEventListener("click", startQuiz);

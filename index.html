@@ -10,7 +10,7 @@
   </head>
 
   <body>
-    <header>
+    <div id="header">
       <h1>Coding Quiz Challenge</h1>
       <p>
         Please try your best to answer the following JavaScript-related
@@ -18,7 +18,7 @@
         reduce your scoretime by 10 seconds. Have fun!
       </p>
       <button class="start-button">Start Quiz</button>
-    </header>
+    </div>
 
     <section>
         <div class="timer">
@@ -26,8 +26,58 @@
             <div class="seconds-left">0</div>
         </div>
         <div class="high-scores">
-            <a href="#">View HighScores</a>
+            <a href="highscore.html">View HighScores</a>
         </div>
     </section>
+
+    <section class="quiz-box hidden-content">
+      <div class="question-1">
+        <h2>Inside which HTML element do we put the JavaScript?</h2>
+        <button onclick="saveAnswer(this);">A. &lt;javascript&gt;</button> 
+        <button onclick="saveAnswer(this);">B. &lt;scripting&gt;</button>
+        <button onclick="saveAnswer(this);" correct>C. &lt;script&gt;</button>
+        <button onclick="saveAnswer(this);">D. &lt;js&gt;</button>
+      </div>
+      <div class="question-2 hidden-content"> 
+        <h2>What is the correct syntax for referring to an external script called "xxx.js"?</h2>
+        <button onclick="saveAnswer(this);" correct>A. &lt;script src="xxx.js"&gt;</button> 
+        <button onclick="saveAnswer(this);">B. &lt;script href="xxx.js"&gt;</button>
+        <button onclick="saveAnswer(this);">C. &lt;script link="xxx.js"&gt;</button>
+        <div class="answer-result"></div>
+      </div>
+      <div class="question-3 hidden-content"> 
+        <h2>How do you write "Hello World" in an alert box?</h2>
+        <button onclick="saveAnswer(this);">A. prompt("Hello World!");</button> 
+        <button onclick="saveAnswer(this);">B. msgBox("Hello World!");</button>
+        <button onclick="saveAnswer(this);">C. alertBox("Hello World!");</button>
+        <button onclick="saveAnswer(this);" correct>D. alert("Hello World!");</button>
+        <div class="answer-result"></div>
+      </div>
+      <div class="question-4 hidden-content"> 
+        <h2>How do you create a function in JavaScript?</h2>
+        <button onclick="saveAnswer(this);">A. function:(myFunction);</button> 
+        <button onclick="saveAnswer(this);" correct>B. function myFunction();</button>
+        <button onclick="saveAnswer(this);">C. function = myFunction();</button>
+        <div class="answer-result"></div>
+      </div>
+      <div class="question-5 hidden-content"> 
+        <h2>JavaScript is the same as Java.</h2>
+        <button onclick="saveAnswer(this);">True </button> 
+        <button onclick="saveAnswer(this);" correct>False</button>
+        <div class="answer-result"></div>
+      </div>
+      <div class="hidden-content" id="form">
+        <h2>All Done!</h2>
+        <p id="final-score"></p>
+        <div>
+          <span>Enter Initials: </span>
+          <input id="initials" type="text" />
+          <button id="submit-button" onclick="submitScore()">Submit</button>
+        </div>
+        <div class="answer-result"></div>
+      </div>
+    </section>
+
+    <script src="assets/js/script.js"></script>
   </body>
 </html>
