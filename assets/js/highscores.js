@@ -6,6 +6,7 @@ function goBack() {
 
 function clearScores() {
     localStorage.setItem("highscores", JSON.stringify([]));
+    highscoreList.innerHTML = "";
 }
 
 function fillHighscores() {

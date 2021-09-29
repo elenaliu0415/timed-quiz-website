@@ -44,7 +44,8 @@ var finalScoreValue;
 function startTimer() {
   timer = setInterval(function () {
     timerElement.textContent = secondsLeft;
-
+    finalScoreValue = secondsLeft;
+    finalScore.textContent = "Your Final Score is: " + secondsLeft;
     if (secondsLeft <= 0) {
       clearInterval(timer);
     } else {
@@ -75,9 +76,10 @@ function saveAnswer(answer) {
   question.classList.add("hidden-content");
   // Show next question
   next_question.classList.remove("hidden-content");
-  // Set final score
-  finalScoreValue = secondsLeft;
-  finalScore.textContent = "Your Final Score is: " + secondsLeft;
+  // Check for final score
+  if(next_question.getAttribute("id") == "form") {
+    clearInterval(timer);
+  }
 }
 
 function submitScore() {
